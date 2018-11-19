@@ -11,6 +11,7 @@
 
 
 int gen_input(int SIZE, float *input_matrix) {
+    //generates numbers for input matrix
     time_t t;
     
     srand((unsigned) time(&t));
@@ -25,6 +26,8 @@ int gen_input(int SIZE, float *input_matrix) {
 
 
 int transpose(int HEIGHT, int WIDTH, int BLOCK_SIZE, float *input_matrix, float *output_matrix) {
+    //transposes input matrix and stores result in output matrix
+    //times how long it takes in seconds to transpose the matrix
     struct timeval start, end;
     
     gettimeofday(&start, NULL);
@@ -57,6 +60,7 @@ int transpose(int HEIGHT, int WIDTH, int BLOCK_SIZE, float *input_matrix, float 
 }
 
 int print_matrix(int WIDTH, float *matrix, int SIZE) {
+    //prints matrix in row & column format
     int counter = 1;
     int max_spaces = 12;
     
@@ -87,6 +91,11 @@ int main(int argc, char **argv) {
     int WIDTH = atoi(argv[2]);
     int BLOCK_SIZE = atoi(argv[3]);
     int SIZE = HEIGHT*WIDTH;
+    
+    if ((BLOCK_SIZE > HEIGHT) || (BLOCK_SIZE > WIDTH)) {
+        perror("Block size cannot larger than the matrix height or width");
+        return -1;
+    }
     
     float *input_matrix = (float *) malloc(SIZE*sizeof(float));
     float *output_matrix = (float *) malloc(SIZE*sizeof(float));
