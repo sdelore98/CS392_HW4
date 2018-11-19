@@ -11,6 +11,7 @@
 
 
 int gen_input(int SIZE, float *input_matrix) {
+    //generates numbers for input matrix
     time_t t;
     
     srand((unsigned) time(&t));
@@ -25,6 +26,8 @@ int gen_input(int SIZE, float *input_matrix) {
 
 
 int transpose(int INPUT_SIZE, int BLOCK_SIZE, float *input_matrix, float *output_matrix) {
+    //transposes input matrix and stores result in output matrix
+    //times how long it takes in seconds to transpose the matrix
     struct timeval start, end;
     
     gettimeofday(&start, NULL);
@@ -52,6 +55,7 @@ int transpose(int INPUT_SIZE, int BLOCK_SIZE, float *input_matrix, float *output
 }
 
 int print_matrix(int INPUT_SIZE, float *matrix, int SIZE) {
+    //prints matrix in row & column format
     int counter = 1;
     int max_spaces = 12;
     
